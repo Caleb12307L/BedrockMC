@@ -1,0 +1,96 @@
+<!doctype html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BedrockMC — Administración</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+<header class="top">
+<a class="brand" href="index.html">
+<span class="cube">◆</span> Bedrock<span>MC</span>
+</a>
+
+<nav>
+<a href="index.html">Inicio</a>
+<a href="catalogo.html">Catálogo</a>
+<a class="active" href="admin.html">Administración</a>
+</nav>
+</header>
+
+<main>
+
+<section class="hero">
+<div>
+<div class="eyebrow">BEDROCKMC · ADMINISTRACIÓN</div>
+
+<h1>Panel de<br><em>administración.</em></h1>
+
+<p>Publica y administra contenido de Minecraft Bedrock.</p>
+
+<div id="loginArea">
+
+<h2>Iniciar sesión</h2>
+
+<input id="email" type="email" placeholder="Correo electrónico">
+
+<input id="password" type="password" placeholder="Contraseña">
+
+<button id="loginButton">Iniciar sesión</button>
+
+<p id="loginMessage"></p>
+
+</div>
+
+<div id="adminArea" style="display:none;">
+
+<h2>Publicar contenido</h2>
+
+<input id="name" type="text" placeholder="Nombre del contenido">
+
+<select id="category">
+<option value="addons">Add-ons</option>
+<option value="texturas">Texturas</option>
+<option value="shaders">Shaders</option>
+<option value="mapas">Mapas</option>
+</select>
+
+<input id="version" type="text" placeholder="Versión de Minecraft">
+
+<textarea id="description" placeholder="Descripción"></textarea>
+
+<label>Imagen</label> <input id="imageFile" type="file" accept="image/*">
+
+<label>Archivo de Minecraft</label> <input id="contentFile" type="file" accept=".mcpack,.mcaddon,.mcworld,.zip">
+
+<button id="publishButton">Publicar</button>
+
+<button id="logoutButton">Cerrar sesión</button>
+
+<p id="publishMessage"></p>
+
+</div>
+
+</div>
+</section>
+
+</main>
+
+<footer>
+<b>BedrockMC</b>
+<span>Panel de administración.</span>
+<span>© 2026 BedrockMC</span>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="assets/js/supabase.js"></script>
+
+<script src="assets/js/admin.js"></script>
+
+</body>
+</html>
