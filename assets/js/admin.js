@@ -77,7 +77,8 @@ const imageFile = document.getElementById("imageFile").files[0];
 const contentFile = document.getElementById("contentFile").files[0];
 
 if (!name || !version || !contentFile) {
-    publishMessage.textContent = "Completa el nombre, versión y archivo.";
+    publishMessage.textContent =
+        "Completa el nombre, versión y archivo.";
     return;
 }
 
@@ -91,12 +92,16 @@ if (userError || !userData.user) {
 
 const userId = userData.user.id;
 
-const safeName = contentFile.name.replace(/[^a-zA-Z0-9._-]/g, "_");
-const contentPath = "uploads/" + Date.now() + "-" + safeName;
+const safeName =
+    contentFile.name.replace(/[^a-zA-Z0-9._-]/g, "_");
 
-const { error: uploadError } = await supabaseClient.storage
-    .from("contend")
-    .upload(contentPath, contentFile);
+const contentPath =
+    "uploads/" + Date.now() + "-" + safeName;
+
+const { error: uploadError } =
+    await supabaseClient.storage
+        .from("contend")
+        .upload(contentPath, contentFile);
 
 if (uploadError) {
     publishMessage.textContent =
@@ -111,11 +116,13 @@ if (imageFile) {
     const safeImageName =
         imageFile.name.replace(/[^a-zA-Z0-9._-]/g, "_");
 
-    const imagePath = "uploads/" + Date.now() + "-" + safeImageName;
+    const imagePath =
+        "uploads/" + Date.now() + "-" + safeImageName;
 
-    const { error: imageError } = await supabaseClient.storage
-        .from("contend")
-        .upload(imagePath, imageFile);
+    const { error: imageError } =
+        await supabaseClient.storage
+            .from("contend")
+            .upload(imagePath, imageFile);
 
     if (imageError) {
         publishMessage.textContent =
@@ -124,33 +131,37 @@ if (imageFile) {
         return;
     }
 
-    const { data: imageData } = supabaseClient.storage
-        .from("contend")
-        .getPublicUrl(imagePath);
+    const { data: imageData } =
+        supabaseClient.storage
+            .from("contend")
+            .getPublicUrl(imagePath);
 
     imageUrl = imageData.publicUrl;
 }
 
-const { data: fileData } = supabaseClient.storage
-    .from("contend")
-    .getPublicUrl(contentPath);
+const { data: fileData } =
+    supabaseClient.storage
+        .from("contend")
+        .getPublicUrl(contentPath);
 
-const { error: databaseError } = await supabaseClient
-    .from("posts")
-    .insert({
-        name: name,
-        category: category,
-        version: version,
-        description: description,
-        image_url: imageUrl,
-        file_url: fileData.publicUrl,
-        published: true,
-        user_id: userId
-    });
+const { error: databaseError } =
+    await supabaseClient
+        .from("posts")
+        .insert({
+            name: name,
+            category: category,
+            version: version,
+            description: description,
+            image_url: imageUrl,
+            file_url: fileData.publicUrl,
+            published: true,
+            user_id: userId
+        });
 
 if (databaseError) {
     publishMessage.textContent =
-        "Error al guardar la publicación: " + databaseError.message;
+        "Error al guardar la publicación: " +
+        databaseError.message;
     console.error(databaseError);
     return;
 }
